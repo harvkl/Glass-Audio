@@ -1,0 +1,88 @@
+﻿<Window x:Class="Glass_Audio.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Glass_Audio"
+        mc:Ignorable="d"
+        Title="Glass Audio | Options" Height="240" Width="360"
+        Icon="/resources/media/Icon.png"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#FFD9D9D9">
+
+    <Window.Resources>
+        <Style x:Key="SettingsImg">
+            <Setter Property="Control.Background" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderBrush" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderThickness" Value="0"></Setter>
+        </Style>
+
+        <Style x:Key="SettingsLabel">
+            <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Top"></Setter>
+            <Setter Property="Control.FontFamily" Value="Roboto"></Setter>
+            <Setter Property="Control.FontSize" Value="22"></Setter>
+            <Setter Property="Control.BorderThickness" Value="0"></Setter>
+        </Style>
+
+        <Style x:Key="ButtonsPanel">
+            <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Top"></Setter>
+            <Setter Property="Control.FontFamily" Value="Roboto"></Setter>
+            <Setter Property="Control.FontSize" Value="20"></Setter>
+            <Setter Property="Control.BorderThickness" Value="1"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid ShowGridLines="False">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+            <Image x:Name="CountryImg" Grid.Column="0" Grid.Row="0" Width="25" Height="25" Source="/resources/media/PreviewImage.png"></Image>
+
+            <Image x:Name="SettingsImg" Grid.Column="3" Grid.Row="1" Width="28" Height="28" Source="./resources/media/Settings.png" Style="{StaticResource SettingsImg}"></Image>
+            <Label x:Name="SettingsLabel" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="5" Width="150" Height="35" Content="Options" Style="{StaticResource SettingsLabel}"/>
+
+            <Button x:Name="PinButton" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="6" Width="180" Height="30" Content="Unpin OnTop" Click="ButtonClick_PinUnpin" Background="#4CFFFFFF" Style="{StaticResource ButtonsPanel}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+        <Button x:Name="CloseButton" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="6" Width="180" Height="30" Content="Close app" Click="ButtonClick_CloseApp" Background="#4CD70A0A" Style="{StaticResource ButtonsPanel}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>
