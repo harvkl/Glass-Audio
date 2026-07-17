@@ -16,7 +16,7 @@ A desktop C# (WPF) app for managing Windows media-sessions and system volume. Al
 
 - **Windows 10/11 (build 19041 or later)**
 - **.NET 8.0 Runtime**
-- **The "Hardware Media Key Handling" browser feature is enabled:** To turn this on, go to search and type chrome://flags/#hardware-media-key-handling, then select Enabled in drop box.
+- **The "Hardware Media Key Handling" browser feature is enabled:** To turn this on, go to search and type `chrome://flags/#hardware-media-key-handling`, then select Enabled in drop box.
 
 ## 🚀 Installation & Usage
 
