@@ -10,7 +10,7 @@
 	  
 	<!--Set minimum version of Windows-->
 	<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
-	<ApplicationIcon>Icon.ico</ApplicationIcon>
+	<ApplicationIcon>resources\media\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -280,7 +280,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Icon.ico" />
+    <Content Include="resources\media\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
