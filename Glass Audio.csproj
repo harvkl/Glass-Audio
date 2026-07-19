@@ -265,7 +265,10 @@
     <None Remove="resources\flags\ZW.png" />
     <None Remove="resources\media\Arrow left-circle.png" />
     <None Remove="resources\media\Arrow right-circle.png" />
+    <None Remove="resources\media\bottom left.png" />
+    <None Remove="resources\media\bottom right.png" />
     <None Remove="resources\media\collapse.png" />
+    <None Remove="resources\media\Icon %283%29.png" />
     <None Remove="resources\media\Icon.png" />
     <None Remove="resources\media\Icon.svg" />
     <None Remove="resources\media\Pagination Next.png" />
@@ -274,6 +277,8 @@
     <None Remove="resources\media\Play circle.png" />
     <None Remove="resources\media\Play.png" />
     <None Remove="resources\media\Settings.png" />
+    <None Remove="resources\media\top left.png" />
+    <None Remove="resources\media\top right.png" />
     <None Remove="resources\media\Volume 1.png" />
     <None Remove="resources\media\Volume 2.png" />
     <None Remove="resources\media\Volume x.png" />
@@ -539,6 +544,8 @@
     <Resource Include="resources\flags\ZW.png" />
     <Resource Include="resources\media\Arrow left-circle.png" />
     <Resource Include="resources\media\Arrow right-circle.png" />
+    <Resource Include="resources\media\bottom left.png" />
+    <Resource Include="resources\media\bottom right.png" />
     <Resource Include="resources\media\collapse.png" />
     <Resource Include="resources\media\expand.png" />
     <Resource Include="resources\media\Icon.png" />
@@ -549,6 +556,8 @@
     <Resource Include="resources\media\Play.png" />
     <Resource Include="resources\media\PreviewImage.png" />
     <Resource Include="resources\media\Settings.png" />
+    <Resource Include="resources\media\top left.png" />
+    <Resource Include="resources\media\top right.png" />
     <Resource Include="resources\media\Volume 1.png" />
     <Resource Include="resources\media\Volume 2.png" />
     <Resource Include="resources\media\Volume x.png" />

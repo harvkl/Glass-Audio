@@ -31,12 +31,6 @@
             <Setter Property="Control.Foreground" Value="#FF636363"></Setter>
         </Style>
 
-        <Style x:Key="VolumeButton">
-            <Setter Property="Control.Background" Value="{x:Null}"></Setter>
-            <Setter Property="Control.BorderBrush" Value="{x:Null}"></Setter>
-            <Setter Property="Control.BorderThickness" Value="0"></Setter>
-        </Style>
-
         <Style x:Key="VolumeIcon">
             <Setter Property="Control.BorderBrush" Value="Black"></Setter>
             <Setter Property="Control.BorderThickness" Value="1"></Setter>
@@ -103,6 +97,54 @@
             <Setter Property="Control.Background" Value="{x:Null}"></Setter>
             <Setter Property="Control.BorderBrush" Value="{x:Null}"></Setter>
             <Setter Property="Control.BorderThickness" Value="0"></Setter>
+
+            <!-- Removes the ugly dotted focus ring -->
+            <Setter Property="Control.FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Control.Cursor" Value="Hand" />
+
+            <!-- Crucial: Makes the button scale from its center, not the top-left corner -->
+            <Setter Property="Control.RenderTransformOrigin" Value="0.5, 0.5" />
+            <Setter Property="Control.RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </Setter.Value>
+            </Setter>
+
+            <!-- Strips away the default Windows template (removes the blue hover) -->
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- The Hover Animation -->
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="InteractionPanelImg">
@@ -160,18 +202,18 @@
         </StackPanel>
 
         <StackPanel x:Name="VolumePanel" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="3" Width="60" Height="90" Orientation="Horizontal">
-            <Button x:Name="VolumeButton" Grid.Column="1" Grid.Row="5" Width="30" Height="30" Click="MuteClick" Style="{StaticResource VolumeButton}">
-                <Image x:Name="VolumeIcon" Width="25" Height="25" Source="./resources/media/Volume x.png" Style="{StaticResource VolumeIcon}" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <Button x:Name="VolumeButton" Grid.Column="1" Grid.Row="5" Width="30" Height="30" Click="MuteClick" Style="{StaticResource InteractionPanelButton}">
+                <Image x:Name="VolumeIcon" Width="25" Height="25" Source="./resources/media/Volume x.png" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource VolumeIcon}"></Image>
             </Button>
             <Slider x:Name="VolumeSlider" Grid.Column="2" Grid.Row="5" Grid.RowSpan="3" Width="30" Height="90" Orientation="Vertical" Value="0" Minimum="0" Maximum="100" ValueChanged="VolumeSlider_ValueChanged" SelectionStart="0" Style="{StaticResource VolumeSlider}"/>
         </StackPanel>
 
         <StackPanel x:Name="InteractionPanel" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="6" Grid.RowSpan="3" Width="180" Height="90" Orientation="Horizontal">
             <Button x:Name="PrevButton" Grid.Column="7" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="2" Width="60" Height="30" Click="PrevClick" Style="{StaticResource InteractionPanelButton}">
-                <Image x:Name="PrevImg" Source="/resources/media/Arrow left-circle.png" Width="28" Height="28" Style="{StaticResource InteractionPanelImg}"></Image>
+                <Image x:Name="PrevImg" Width="28" Height="28" Source="/resources/media/Arrow left-circle.png" Style="{StaticResource InteractionPanelImg}"></Image>
             </Button>
             <Button x:Name="PlayPauseButton" Grid.Column="9" Grid.Row="6" Grid.ColumnSpan="2" Grid.RowSpan="3" Width="60" Height="60" Click="PlayPauseClick" Style="{StaticResource InteractionPanelButton}">
-                <Image x:Name="PlayPauseImg" Source="/resources/media/Play circle.png" Style="{StaticResource InteractionPanelImg}"></Image>
+                <Image x:Name="PlayPauseImg" Source="/resources/media/Play circle.png" Width="60" Height="60" Style="{StaticResource InteractionPanelImg}"></Image>
             </Button>
             <Button x:Name="NextButton" Grid.Column="11" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="2" Width="60" Height="30" Click="NextClick" Style="{StaticResource InteractionPanelButton}">
                 <Image x:Name="NextImg" Source="/resources/media/Arrow right-circle.png" Width="28" Height="28" Style="{StaticResource InteractionPanelImg}"></Image>

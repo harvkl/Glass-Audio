@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Glass_Audio"
         mc:Ignorable="d"
-        Title="Glass Audio | Options" Height="240" Width="360"
+        Title="Glass Audio | Options" Height="270" Width="360"
         Icon="/resources/media/Icon.png"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -20,24 +20,144 @@
 
         <Style x:Key="SettingsLabel">
             <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
-            <Setter Property="Control.VerticalContentAlignment" Value="Top"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"></Setter>
             <Setter Property="Control.FontFamily" Value="Roboto"></Setter>
             <Setter Property="Control.FontSize" Value="22"></Setter>
-            <Setter Property="Control.BorderThickness" Value="0"></Setter>
+            <Setter Property="Control.FontWeight" Value="Medium"></Setter>
+        </Style>
+
+        <Style x:Key="ThemesEllipses">
+            <Setter Property="Control.Width" Value="25"></Setter>
+            <Setter Property="Control.Height" Value="25"></Setter>
+            <Setter Property="Control.Cursor" Value="Hand"></Setter>
         </Style>
 
         <Style x:Key="ButtonsPanel">
             <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
             <Setter Property="Control.VerticalContentAlignment" Value="Top"></Setter>
             <Setter Property="Control.FontFamily" Value="Roboto"></Setter>
-            <Setter Property="Control.FontSize" Value="20"></Setter>
-            <Setter Property="Control.BorderThickness" Value="1"></Setter>
+            <Setter Property="Control.FontSize" Value="18"></Setter>
+
+            <Setter Property="Control.Background" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderBrush" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderThickness" Value="0"></Setter>
+
+            <!-- Removes the ugly dotted focus ring -->
+            <Setter Property="Control.FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Control.Cursor" Value="Hand" />
+
+            <!-- Crucial: Makes the button scale from its center, not the top-left corner -->
+            <Setter Property="Control.RenderTransformOrigin" Value="0.5, 0.5" />
+            <Setter Property="Control.RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </Setter.Value>
+            </Setter>
+
+            <!-- Strips away the default Windows template (removes the blue hover) -->
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- The Hover Animation -->
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="GreetingsLabel">
+            <Setter Property="Control.Foreground" Value="#8E8E8E"></Setter>
+            <Setter Property="Control.HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Top"></Setter>
+            <Setter Property="Control.FontFamily" Value="Roboto"></Setter>
+            <Setter Property="Control.FontSize" Value="12"></Setter>
+        </Style>
+
+        <Style x:Key="PosBind">
+            <Setter Property="Control.Background" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderBrush" Value="{x:Null}"></Setter>
+            <Setter Property="Control.BorderThickness" Value="0"></Setter>
+
+            <!-- Removes the ugly dotted focus ring -->
+            <Setter Property="Control.FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Control.Cursor" Value="Hand" />
+
+            <!-- Crucial: Makes the button scale from its center, not the top-left corner -->
+            <Setter Property="Control.RenderTransformOrigin" Value="0.5, 0.5" />
+            <Setter Property="Control.RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </Setter.Value>
+            </Setter>
+
+            <!-- Strips away the default Windows template (removes the blue hover) -->
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- The Hover Animation -->
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.15" />
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
     <Grid ShowGridLines="False">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
@@ -64,25 +184,65 @@
             <ColumnDefinition Width="30"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-            <Image x:Name="CountryImg" Grid.Column="0" Grid.Row="0" Width="25" Height="25" Source="/resources/media/PreviewImage.png"></Image>
+        <TextBlock x:Name="GreetingsLabel" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12" Height="30" Width="360" TextAlignment="Center" Style="{StaticResource GreetingsLabel}"></TextBlock>
 
-            <Image x:Name="SettingsImg" Grid.Column="3" Grid.Row="1" Width="28" Height="28" Source="./resources/media/Settings.png" Style="{StaticResource SettingsImg}"></Image>
-            <Label x:Name="SettingsLabel" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="5" Width="150" Height="35" Content="Options" Style="{StaticResource SettingsLabel}"/>
+        <Image x:Name="SettingsImg" Grid.Column="3" Grid.Row="1" Width="28" Height="28" Source="./resources/media/Settings.png" Style="{StaticResource SettingsImg}"></Image>
+        <TextBlock x:Name="SettingsLabel" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" Width="90" Height="30" Text="Options" Padding="0, 2, 0, 0" Style="{StaticResource SettingsLabel}"/>
 
-            <Button x:Name="PinButton" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="6" Width="180" Height="30" Content="Unpin OnTop" Click="ButtonClick_PinUnpin" Background="#4CFFFFFF" Style="{StaticResource ButtonsPanel}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"></Setter>
-                    </Style>
-                </Button.Resources>
-            </Button>
+        <TextBlock x:Name="ThemesText" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Width="60" Height="30" Padding="0, 6, 0, 0" FontFamily="Roboto" FontSize="15" Text="Themes:"></TextBlock>
+        <Ellipse x:Name="ThemeWhite" Grid.Column="5" Grid.Row="3" Fill="White" MouseDown="ButtonClick_ThemeWhite" Style="{StaticResource ThemesEllipses}"></Ellipse>
+        <Ellipse x:Name="ThemeG1" Grid.Column="6" Grid.Row="3" MouseDown="ButtonClick_ThemeG1" Style="{StaticResource ThemesEllipses}">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#D0B5B5"/>
+                    <GradientStop Color="#442A6B" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse x:Name="ThemeG2" Grid.Column="7" Grid.Row="3" MouseDown="ButtonClick_ThemeG2" Style="{StaticResource ThemesEllipses}">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#D0B5B5"/>
+                    <GradientStop Color="#536B2A" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse x:Name="ThemeG3" Grid.Column="8" Grid.Row="3" MouseDown="ButtonClick_ThemeG3" Style="{StaticResource ThemesEllipses}">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#D0B5B5"/>
+                    <GradientStop Color="#2A526B" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
 
-        <Button x:Name="CloseButton" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="6" Width="180" Height="30" Content="Close app" Click="ButtonClick_CloseApp" Background="#4CD70A0A" Style="{StaticResource ButtonsPanel}">
+        <Image x:Name="PositionBindingImage" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="4" Width="120" Height="60" IsHitTestVisible="False" Source="/resources/media/bottom right.png"></Image>
+        <Button x:Name="PosBindTL" Grid.Column="1" Grid.Row="5" Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Click="ButtonClick_SetAppPos_TL" Style="{StaticResource PosBind}"></Button>
+        <Button x:Name="PosBindTR" Grid.Column="4" Grid.Row="5" Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Click="ButtonClick_SetAppPos_TR" Style="{StaticResource PosBind}"></Button>
+        <Button x:Name="PosBindBL" Grid.Column="1" Grid.Row="6" Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Click="ButtonClick_SetAppPos_BL" Style="{StaticResource PosBind}"></Button>
+        <Button x:Name="PosBindBR" Grid.Column="4" Grid.Row="6" Width="20" Height="20" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Click="ButtonClick_SetAppPos_BR" Style="{StaticResource PosBind}"></Button>
+
+        <Button x:Name="PinButton" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Width="60" Height="60" Click="ButtonClick_PinUnpin" BorderThickness="0" Background="#4CFFFFFF">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"></Setter>
+                    <Setter Property="CornerRadius" Value="10"></Setter>
                 </Style>
             </Button.Resources>
+
+            <TextBlock x:Name="PinButtonText" Text="Unpin OnTop" TextWrapping="Wrap" Width="60" Height="60" Padding="0, 8, 2, 0" TextAlignment="Center" FontWeight="SemiBold" Style="{StaticResource ButtonsPanel}"></TextBlock>
         </Button>
+
+        <Button x:Name="CloseButton" Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Width="60" Height="60" Click="ButtonClick_CloseApp" BorderThickness="0" Background="#4CD70A0A">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"></Setter>
+                </Style>
+            </Button.Resources>
+
+            <TextBlock x:Name="CloseButtonText" Text="Close app" TextWrapping="Wrap" Width="60" Height="60" Padding="0, 8, 2, 0" TextAlignment="Center" FontWeight="SemiBold" Style="{StaticResource ButtonsPanel}"></TextBlock>
+        </Button>
+
+        <TextBlock x:Name="LocationLabel" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="5" Width="150" Height="30" Text="Your location is defined as" TextAlignment="Center" Padding="0, 9, 0, 0" Style="{StaticResource GreetingsLabel}"></TextBlock>
+        <Image x:Name="CountryImg" Grid.Column="8" Grid.Row="8" Width="25" Height="25" Source="/resources/media/PreviewImage.png"></Image>
     </Grid>
 </Window>

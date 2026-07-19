@@ -28,7 +28,8 @@ namespace Glass_Audio
             InitializeComponent();
 
             string countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName.ToUpper();
-            string user = Environment.UserName; // for future settings window
+            string user = Environment.UserName; // for greetings
+            this.GreetingsLabel.Text = $"Hi, {user}!";
 
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -37,7 +38,6 @@ namespace Glass_Audio
 
             this.CountryImg.Source = bitmap;
         }
-
 
         private void ButtonClick_PinUnpin(object sender, RoutedEventArgs e)
         {
@@ -48,16 +48,16 @@ namespace Glass_Audio
                 cause this line -> Application.Current.MainWindow doessn't give you MainWindow, it will return the last window you clicked on.
             */
 
-            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault(); 
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             if (main.Topmost == false)
             {
-                this.PinButton.Content = "Unpin OnTop";
+                this.PinButtonText.Text = "Unpin OnTop";
                 main.Topmost = true;
             }
             else 
             {
-                this.PinButton.Content = "Pin OnTop";
+                this.PinButtonText.Text = "Pin OnTop";
                 main.Topmost = false;
             }
 
@@ -68,5 +68,135 @@ namespace Glass_Audio
             var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             main.Close();
         }
+
+        // ------------------------------------------------------------------------------------
+        // themes switch functions
+
+        private void ButtonClick_ThemeWhite(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            var converter = new BrushConverter();
+
+            main.Background = (SolidColorBrush)converter.ConvertFrom("#FFD9D9D9");
+            this.Background = (SolidColorBrush)converter.ConvertFrom("#FFD9D9D9");
+        }
+        private void ButtonClick_ThemeG1(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            LinearGradientBrush gradientBrush = new LinearGradientBrush();
+
+            gradientBrush.StartPoint = new Point(0, 0);
+            gradientBrush.EndPoint = new Point(0, 1);
+
+            Color startColor = (Color)ColorConverter.ConvertFromString("#D0B5B5");
+            Color endColor = (Color)ColorConverter.ConvertFromString("#442A6B");
+
+            gradientBrush.GradientStops.Add(new GradientStop(startColor, 0.0));
+            gradientBrush.GradientStops.Add(new GradientStop(endColor, 1.0));
+
+            main.Background = gradientBrush;
+            this.Background = gradientBrush;
+        }
+        private void ButtonClick_ThemeG2(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            LinearGradientBrush gradientBrush = new LinearGradientBrush();
+
+            gradientBrush.StartPoint = new Point(0, 0);
+            gradientBrush.EndPoint = new Point(0, 1);
+
+            Color startColor = (Color)ColorConverter.ConvertFromString("#D0B5B5");
+            Color endColor = (Color)ColorConverter.ConvertFromString("#536B2A");
+
+            gradientBrush.GradientStops.Add(new GradientStop(startColor, 0.0));
+            gradientBrush.GradientStops.Add(new GradientStop(endColor, 1.0));
+
+            main.Background = gradientBrush;
+            this.Background = gradientBrush;
+        }
+        private void ButtonClick_ThemeG3(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            LinearGradientBrush gradientBrush = new LinearGradientBrush();
+
+            gradientBrush.StartPoint = new Point(0, 0);
+            gradientBrush.EndPoint = new Point(0, 1);
+
+            Color startColor = (Color)ColorConverter.ConvertFromString("#D0B5B5");
+            Color endColor = (Color)ColorConverter.ConvertFromString("#2A526B");
+
+            gradientBrush.GradientStops.Add(new GradientStop(startColor, 0.0));
+            gradientBrush.GradientStops.Add(new GradientStop(endColor, 1.0));
+
+            main.Background = gradientBrush;
+            this.Background = gradientBrush;
+        }
+
+        // ----------------------------------------------------------------------------------
+        // window positioning functions
+        private void ButtonClick_SetAppPos_TL(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            BitmapImage bitmap = new BitmapImage();
+
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("/resources/media/top left.png", UriKind.Relative);
+            bitmap.EndInit();
+
+            PositionBindingImage.Source = bitmap;
+
+            main.SetMainWindowPosition();
+            main.SetSettingsWindowPosition();
+        }
+
+        private void ButtonClick_SetAppPos_TR(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            BitmapImage bitmap = new BitmapImage();
+
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("/resources/media/top right.png", UriKind.Relative);
+            bitmap.EndInit();
+
+            PositionBindingImage.Source = bitmap;
+
+            main.SetMainWindowPosition();
+            main.SetSettingsWindowPosition();
+        }
+
+        private void ButtonClick_SetAppPos_BL(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            BitmapImage bitmap = new BitmapImage();
+
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("/resources/media/bottom left.png", UriKind.Relative);
+            bitmap.EndInit();
+
+            PositionBindingImage.Source = bitmap;
+
+            main.SetMainWindowPosition();
+            main.SetSettingsWindowPosition();
+        }
+
+        private void ButtonClick_SetAppPos_BR(object sender, RoutedEventArgs e)
+        {
+            var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            BitmapImage bitmap = new BitmapImage();
+
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("/resources/media/bottom right.png", UriKind.Relative);
+            bitmap.EndInit();
+
+            PositionBindingImage.Source = bitmap;
+
+            main.SetMainWindowPosition();
+            main.SetSettingsWindowPosition();
+        }
+
     }
 }

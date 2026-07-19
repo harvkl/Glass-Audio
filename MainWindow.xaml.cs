@@ -234,13 +234,50 @@ public partial class MainWindow : Window
         }
     }
 
-    private void SetMainWindowPosition()
+    public void SetMainWindowPosition()
     {
-        this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 25;
-        this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 50;
+        if (_settingsWindow.PositionBindingImage.Source.ToString() == "pack://application:,,,/resources/media/top left.png")
+        {
+            if (this.CollapseImgButton.Source.ToString() == "pack://application:,,,/resources/media/collapse.png") // if we have expanded window
+            {
+                this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 1400;
+                this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 800;
+            }
+            else
+            {
+                this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 1700;
+                this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 800;
+            }
+        }
+
+        else if (_settingsWindow.PositionBindingImage.Source.ToString() == "pack://application:,,,/resources/media/top right.png") // on right side we don't need to check if window is expanded
+        {
+            this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 25;
+            this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 800;
+        }
+
+        else if (_settingsWindow.PositionBindingImage.Source.ToString() == "pack://application:,,,/resources/media/bottom left.png")
+        {
+            if (this.CollapseImgButton.Source.ToString() == "pack://application:,,,/resources/media/collapse.png") // if we have expanded window
+            {
+                this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 1400;
+                this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 50;
+            }
+            else
+            {
+                this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 1700;
+                this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 50;
+            }
+        }
+
+        else if (_settingsWindow.PositionBindingImage.Source.ToString() == "pack://application:,,,/resources/media/bottom right.png") // on right side we don't need to check if window is expanded
+        {
+            this.Left = SystemParameters.PrimaryScreenWidth - this.Width - 25;
+            this.Top = SystemParameters.PrimaryScreenHeight - this.Height - 50;
+        }
     }
 
-    private void SetSettingsWindowPosition()
+    public void SetSettingsWindowPosition()
     {
         _settingsWindow.Owner = this; // this is necessary to close all sub-windows in case if main window was closed
 
@@ -248,7 +285,7 @@ public partial class MainWindow : Window
 
         if (SystemParameters.PrimaryScreenWidth > this.Left + this.ActualWidth + 25)
         {
-            _settingsWindow.Left = this.Left + this.ActualWidth; //sets the location on right of the main window
+            _settingsWindow.Left = this.Left + this.ActualWidth + 5; //sets the location on right of the main window
             _settingsWindow.Top = this.Top;
         }
         else if(this.Width == 210) //checking if we have an collapsed main window
@@ -279,7 +316,6 @@ public partial class MainWindow : Window
             this.FirstLabel.Visibility = Visibility.Collapsed;
             this.SettingsButton.Visibility = Visibility.Collapsed;
             this.VolumePanel.Visibility = Visibility.Collapsed;
-            this.VolumeButton.Visibility = Visibility.Collapsed;
             this.VolumeIcon.Visibility = Visibility.Collapsed;
             this.VolumeSlider.Visibility = Visibility.Collapsed;
 
@@ -329,7 +365,6 @@ public partial class MainWindow : Window
             this.FirstLabel.Visibility = Visibility.Visible;
             this.SettingsButton.Visibility = Visibility.Visible;
             this.VolumePanel.Visibility = Visibility.Visible;
-            this.VolumeButton.Visibility = Visibility.Visible;
             this.VolumeIcon.Visibility = Visibility.Visible;
             this.VolumeSlider.Visibility = Visibility.Visible;
 
