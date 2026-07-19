@@ -11,6 +11,8 @@
 	<!--Set minimum version of Windows-->
 	<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
 	<ApplicationIcon>resources\media\Icon.ico</ApplicationIcon>
+
+    <Version>2.0.0</Version> <!-- Main version -->
   </PropertyGroup>
 
   <ItemGroup>
